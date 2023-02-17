@@ -1,37 +1,35 @@
 import React from 'react'
-import Button, { ButtonType, ButtonSize } from './components/Button/button'
+import Button from './components/Button/button'
+import Alert from './components/Alert/alert'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Button>按钮0</Button>
-        <Button disabled>按钮1</Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.large}>
-          按钮2
+        <Button className="custom">默认按钮</Button>
+        <Button disabled>禁用</Button>
+        <Button size="lg" btnType="primary">
+          大按钮
         </Button>
-        <Button btnType={ButtonType.Link} href="http://www.baidu.com" disabled>
-          按钮3
+        <Button size="sm">小按钮</Button>
+        <Button btnType="link" target="_blank" href="https://www.baidu.com/">
+          按钮链接
         </Button>
-        <Button
-          btnType={ButtonType.Link}
-          href="http://www.baidu.com"
-          target="_blank"
-        >
-          按钮4
+        <Button btnType="link" href="https://www.baidu.com/" disabled>
+          禁用按钮链接
         </Button>
 
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div style={{ marginTop: 20, width: 400 }}>
+          <Alert closable onClose={(e) => alert(e)}></Alert>
+          <hr />
+          <Alert type="success" closable description="成功"></Alert>
+          <hr />
+          <Alert type="danger" closable description="失败"></Alert>
+          <hr />
+          <Alert type="warning" description="警告"></Alert>
+          <hr />
+          <Alert closable title="标题" description="自定义描述"></Alert>
+        </div>
       </header>
     </div>
   )
