@@ -1,6 +1,9 @@
 import React from 'react'
 import Button from './components/Button/button'
 import Alert from './components/Alert/alert'
+import Menu from './components/Menu/menu'
+import MenuItem from './components/Menu/menuitem'
+import SubMenu from './components/Menu/subMenu'
 
 function App() {
   return (
@@ -29,6 +32,26 @@ function App() {
           <Alert type="warning" description="警告"></Alert>
           <hr />
           <Alert closable title="标题" description="自定义描述"></Alert>
+        </div>
+
+        <div style={{ marginTop: 20 }}>
+          <Menu
+            defaultIndex="0"
+            onSelect={(index) => {
+              alert(index)
+            }}
+            mode="vertical"
+            defaultOpenSubMenus={['3']}
+          >
+            <MenuItem>cllo link</MenuItem>
+            <MenuItem disabled>cllo link 2</MenuItem>
+            <MenuItem>cllo link 3</MenuItem>
+            <SubMenu title="dropdown">
+              <MenuItem>dropdown 1</MenuItem>
+              <MenuItem>dropdown 2</MenuItem>
+              <MenuItem>dropdown 3</MenuItem>
+            </SubMenu>
+          </Menu>
         </div>
       </header>
     </div>
