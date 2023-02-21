@@ -2,6 +2,8 @@ import React, { useContext, useState, FunctionComponentElement } from 'react'
 import classNames from 'classnames'
 import { MenuContext } from './menu'
 import { MenuItemProps } from './menuitem'
+import Icon from '../Icon/icon'
+import Transition from '../Transition/transition'
 
 export interface SbuMenuProps {
   index?: string
@@ -25,6 +27,8 @@ const SubMenu: React.FC<SbuMenuProps> = ({
   const [menuOpen, setOpen] = useState(isOpend)
   const classes = classNames('menu-item submenu-item', className, {
     'is-active': context.index === index,
+    'is-opened': menuOpen,
+    'is-vertical': context.mode === 'vertical',
   })
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -61,7 +65,8 @@ const SubMenu: React.FC<SbuMenuProps> = ({
     })
     const childrenComponent = React.Children.map(children, (child, i) => {
       const childElement = child as FunctionComponentElement<MenuItemProps>
-      if (childElement.type.displayName === 'MenuItem') {
+      const { displayName } = childElement.type
+      if (displayName === 'MenuItem') {
         return React.cloneElement(childElement, {
           index: `${index}-${i}`,
         })
@@ -71,12 +76,17 @@ const SubMenu: React.FC<SbuMenuProps> = ({
         )
       }
     })
-    return <ul className={subMenuClasses}>{childrenComponent}</ul>
+    return (
+      <Transition in={menuOpen} timeout={300} animation="zoom-in-top">
+        <ul className={subMenuClasses}>{childrenComponent}</ul>
+      </Transition>
+    )
   }
   return (
     <li key={index} className={classes} {...hoverEvents}>
       <div className="submenu-title" {...clickEvents}>
         {title}
+        <Icon icon="angle-down" className="arrow-icon" />
       </div>
       {renderChildren()}
     </li>

@@ -1,14 +1,23 @@
 import React from 'react'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
 import Button from './components/Button/button'
 import Alert from './components/Alert/alert'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuitem'
 import SubMenu from './components/Menu/subMenu'
-
+import Icon from './components/Icon/icon'
+library.add(fas)
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div style={{ marginTop: 20, width: 400 }}>
+          {/* <FontAwesomeIcon icon={faCoffee} size="6x" /> */}
+          <Icon icon="coffee" theme="danger" size="lg" />
+          <Icon icon="arrow-down" theme="primary" size="lg" />
+        </div>
+
         <Button className="custom">默认按钮</Button>
         <Button disabled>禁用</Button>
         <Button size="lg" btnType="primary">
