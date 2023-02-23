@@ -14,7 +14,7 @@ const defaultButton = () => (
   <Button onClick={action('clicked')}>default button</Button>
 )
 
-const buttonWithSize = () => (
+const buttonWithSize = () =>  (
   <>
     <Button size="lg">large button</Button>
     <Button size="sm">small button</Button>
