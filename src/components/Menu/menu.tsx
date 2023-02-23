@@ -5,12 +5,16 @@ import { MenuItemProps } from './menuitem'
 type MenuMode = 'horizontal' | 'vertical'
 type SelectCallback = (selectedIndex: string) => void
 export interface MenuProps {
+  /**默认 active 的菜单项的索引值 */
   defaultIndex?: string
   className?: string
+  /**菜单类型 横向或者纵向 */
   mode?: MenuMode
   style?: React.CSSProperties
+  /**点击菜单项触发的回掉函数 */
   onSelect?: SelectCallback
   children?: React.ReactNode
+  /**设置子菜单的默认打开 只在纵向模式下生效 */
   defaultOpenSubMenus?: string[]
 }
 interface ImenuContext {
@@ -21,7 +25,15 @@ interface ImenuContext {
 }
 export const MenuContext = createContext<ImenuContext>({ index: '0' })
 
-const Menu: React.FC<MenuProps> = (props) => {
+/**
+ * 为网站提供导航功能的菜单。支持横向纵向两种模式，支持下拉菜单。
+ * ### 引用方法
+ *
+ * ~~~js
+ * import { Menu } from 'imooc'
+ * ~~~
+ */
+export const Menu: React.FC<MenuProps> = (props) => {
   const {
     className,
     mode,
