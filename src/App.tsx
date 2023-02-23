@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import Button from './components/Button/button'
@@ -7,8 +7,10 @@ import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuitem'
 import SubMenu from './components/Menu/subMenu'
 import Icon from './components/Icon/icon'
+import Transition from './components/Transition/transition'
 library.add(fas)
 function App() {
+  const [show, setShow] = useState(false)
   return (
     <div className="App">
       <header className="App-header">
@@ -61,6 +63,28 @@ function App() {
               <MenuItem>dropdown 3</MenuItem>
             </SubMenu>
           </Menu>
+        </div>
+        <div style={{ marginTop: 20, width: 400, height: 600 }}>
+          <Icon icon="coffee" theme="success" size="10x"></Icon>
+
+          <Button
+            size="lg"
+            onClick={() => {
+              setShow(!show)
+            }}
+          >
+            切换动画
+          </Button>
+          <Transition in={show} timeout={300} animation="zoom-in-left">
+            <div>
+              <p>家居</p>
+              <p>甲氨基</p>
+              <p>商城</p>
+            </div>
+          </Transition>
+          <Transition wrapper in={show} timeout={3000} animation="zoom-in-top">
+            <Button size="lg">答案呢</Button>
+          </Transition>
         </div>
       </header>
     </div>

@@ -76,6 +76,7 @@
     "babel-plugin-named-exports-order": "^0.0.2",
     "prop-types": "^15.8.1",
     "react-docgen-typescript-loader": "^3.7.2",
-    "webpack": "^5.75.0"
+    "webpack": "^5.75.0",
+    "webpack-hot-middleware": "^2.25.3"
   }
 }

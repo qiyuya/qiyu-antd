@@ -8,7 +8,7 @@ import Button from './button'
 //   textAlign: 'center',
 // }
 
-// const CenterDecorator = (storyFn: any) => <div style={styles}>{storyFn()}</div>
+// const CenterDecorator =   (storyFn: any) => <div style={styles}>{storyFn()}</div>
 
 const defaultButton = () => (
   <Button onClick={action('clicked')}>default button</Button>
