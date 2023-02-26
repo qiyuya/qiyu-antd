@@ -8,12 +8,67 @@ import MenuItem from './components/Menu/menuitem'
 import SubMenu from './components/Menu/subMenu'
 import Icon from './components/Icon/icon'
 import Transition from './components/Transition/transition'
+import Upload, { UploadFile } from './components/Upload/upload'
 library.add(fas)
 function App() {
   const [show, setShow] = useState(false)
+  const defaultFileList: UploadFile[] = [
+    {
+      uid: '123',
+      size: 1234,
+      name: 'hello.md',
+      status: 'uploading',
+      percent: 30
+    },
+    { uid: '122', size: 1234, name: 'xyz.md', status: 'success', percent: 30 },
+    { uid: '121', size: 1234, name: 'eyiha.md', status: 'error', percent: 30 }
+  ]
   return (
     <div className="App">
       <header className="App-header">
+        <div style={{ marginTop: 20, width: 500 }}>
+          {/* <Upload
+            action="https://jsonplaceholder.typicode.com/posts"
+            onProgress={(data, file) => {
+              console.log('onP', data)
+            }}
+            onSuccess={(res, file) => {
+              console.log('onS', res)
+            }}
+            onError={(err, file) => {
+              console.log('onE', err)
+            }}
+          /> */}
+          <Upload
+            action="https://jsonplaceholder.typicode.com/posts"
+            onChange={file => {
+              console.log('file', file)
+            }}
+            name="fileName"
+            data={{ key: 'value' }}
+            headers={{ 'X-powered-By': 'qiyuya' }}
+            defaultFileList={defaultFileList}
+            accept=".jpg"
+            multiple
+            drag
+            // beforeUpload={(file: File) => {
+            //   // 处理boolean的可能
+            //   // if (Math.round(file.size / 1024) > 50) {
+            //   //   alert('file too big')
+            //   //   return false
+            //   // }
+            //   // return true
+            //   const newFile = new File([file], 'new_name.md', {
+            //     type: file.type
+            //   })
+            //   return Promise.resolve(newFile)
+            // }}
+          >
+            <Icon icon="upload" size="5x" theme="secondary" />
+            <br />
+            <p>Drag file over to upload</p>
+          </Upload>
+        </div>
         <div style={{ marginTop: 20, width: 400 }}>
           {/* <FontAwesomeIcon icon={faCoffee} size="6x" /> */}
           <Icon icon="coffee" theme="danger" size="lg" />
@@ -34,7 +89,7 @@ function App() {
         </Button>
 
         <div style={{ marginTop: 20, width: 400 }}>
-          <Alert closable onClose={(e) => alert(e)}></Alert>
+          <Alert closable onClose={e => alert(e)}></Alert>
           <hr />
           <Alert type="success" closable description="成功"></Alert>
           <hr />
@@ -48,7 +103,7 @@ function App() {
         <div style={{ marginTop: 20 }}>
           <Menu
             defaultIndex="0"
-            onSelect={(index) => {
+            onSelect={index => {
               alert(index)
             }}
             mode="vertical"
